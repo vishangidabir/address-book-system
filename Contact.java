@@ -10,7 +10,7 @@ public class Contact {
     private long phoneNumber;
     private String email;
 
-    Contact(String firstName, String lastName,  String address, String city, String state, int zip, long phoneNumber, String email){
+    Contact(){
         this.setFirstName(firstName);
         this.setLastName(lastName);;
         this.setAddress(address);
