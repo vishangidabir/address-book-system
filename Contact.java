@@ -10,6 +10,7 @@ public class Contact {
     private long phoneNumber;
     private String email;
 
+
     Contact(){
         this.setFirstName(firstName);
         this.setLastName(lastName);;
@@ -101,9 +102,15 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
-                + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
-                + "]";
+        return "Contact{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                '}';
     }
-    
 }

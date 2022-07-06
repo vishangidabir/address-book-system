@@ -15,7 +15,7 @@ public class AddressBookSystem {
         boolean condition = true;
 
         while (condition == true) {
-            System.out.println("1.add" + "\n" + "2.edit" + "\n" + "3.delete" + "\n" + "4.multiple");
+            System.out.println("1.Add" + "\n" + "2.Edit" + "\n" + "3.Delete" + "\n" + "4.Multiple");
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
@@ -57,16 +57,16 @@ public class AddressBookSystem {
 
         addressBook.add(details);
         System.out.print(addressBook);
-        System.out.println("succesfully added new contacts");
+        System.out.println("Succesfully added new contacts");
     }
 
     public void editContactDetails() {
-        System.out.println("enter a name for edit:");
+        System.out.println("Enter a name for edit:");
         String editName = scanner.next();
         for (int i = 0; i < addressBook.size(); i++) {
             if (addressBook.get(i).getFirstName().equals(editName)) {
                 System.out.println("select options");
-                System.out.println("\n0.First Name\n1.Last Name\n2.Address\n3.City\n4.State\n5.Zip\n6.Phone Number");
+                System.out.println("\n1.First Name\n2.Last Name\n3.Address\n4.City\n5.State\n6.Zip\n7.Phone Number\n8.Email");
                 int editOption = scanner.nextInt();
 
                 switch (editOption) {
@@ -114,7 +114,7 @@ public class AddressBookSystem {
     }
 
     public void deleteContact() {
-        System.out.println("confirm the name to delete contact");
+        System.out.println("Confirm the name to delete contact");
         String confirmName = scanner.next();
         for (int i = 0; i < addressBook.size(); i++) {
             if (addressBook.get(i).getFirstName().equals(confirmName)) ;
@@ -132,4 +132,5 @@ public class AddressBookSystem {
             System.out.println(i + 1 + " Contact added Successfully.. ");
         }
     }
+
 }
