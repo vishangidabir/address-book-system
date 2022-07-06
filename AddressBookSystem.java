@@ -6,16 +6,17 @@ import java.util.Scanner;
 public class AddressBookSystem {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Contact> addressBook = new ArrayList<Contact>();
+
     public static void main(String[] args) {
+
         System.out.println("Welcome to the Address Book Problem");
         AddressBookSystem addressBookList = new AddressBookSystem();
         addressBookList.addContactDetails();
         boolean condition = true;
 
         while (condition == true) {
-            System.out.println("1.add" + "\n" + "2.edit");
+            System.out.println("1.add" + "\n" + "2.edit" + "\n" + "3.delete");
             int option = scanner.nextInt();
-
             switch (option) {
                 case 1:
                     addressBookList.addContactDetails();
@@ -23,59 +24,61 @@ public class AddressBookSystem {
                 case 2:
                     addressBookList.editContactDetails();
                     break;
+                case 3:
+                    addressBookList.deleteContact();
+                    break;
                 default:
                     System.out.println("Invalid Input");
             }
         }
     }
-
     public void addContactDetails() {
-        Contact details = new Contact();
+        Contact details=new Contact();
         System.out.println("Enter a first name:");
+        String firstName=scanner.next();
         details.setFirstName(scanner.next());
-        String firstName = scanner.next();
         System.out.println("Enter a last name:");
-        String lastName = scanner.next();
+        String lastName=scanner.next();
         details.setLastName(scanner.next());
         System.out.println("Enter a Address:");
-        String address = scanner.next();
+        String address=scanner.next();
         details.setAddress(scanner.next());
         System.out.println("Enter a City name:");
-        String city = scanner.next();
+        String city=scanner.next();
         details.setCity(scanner.next());
         System.out.println("Enter a state:");
-        String state = scanner.next();
+        String state=scanner.next();
         details.setState(scanner.next());
         System.out.println("Enter a email:");
-        String email = scanner.next();
+        String email=scanner.next();
         details.setEmail(scanner.next());
         System.out.println("Enter a zip code:");
-        int zip = scanner.nextInt();
+        int  zip=scanner.nextInt();
         details.setZip(scanner.nextInt());
         System.out.println("Enter a phone number:");
-        long phoneNumber = scanner.nextLong();
+        long phoneNumber=scanner.nextLong();
         details.setPhoneNumber(scanner.nextLong());
 
         addressBook.add(details);
-        Contact details1 = new Contact(firstName, lastName, address, city, state, email, zip, phoneNumber);
+        Contact details1=new Contact(firstName, lastName, address,  city, state, email,  zip, phoneNumber);
         addressBook.add(details1);
         System.out.print(addressBook);
-        System.out.println("succesfully added new contact");
+        System.out.println("succesfully added person new contacts");
     }
 
     public void editContactDetails() {
         System.out.println("enter a name for edit:");
-        String editName = scanner.next();
-        for (int i = 0; i < addressBook.size(); i++) {
-            if (addressBook.get(i).getFirstName().equals(editName)) {
+        String editName=scanner.next();
+        for(int i=0; i<addressBook.size(); i++) {
+            if(addressBook.get(i).getFirstName().equals(editName)) {
                 System.out.println("select options");
                 System.out.println("\n0.First Name\n1.Last Name\n2.Address\n3.City\n4.State\n5.Zip\n6.Phone Number");
-                int editOption = scanner.nextInt();
-                //System.out.println("message"+editOption);
-                switch (editOption) {
+                int editOption=scanner.nextInt();
+
+                switch(editOption) {
                     case 1:
                         System.out.println("Enter a First name:");
-                        String editFirstName = scanner.next();
+                        String editFirstName=scanner.next();
                         addressBook.get(i).setFirstName(editFirstName);
                         System.out.println(editFirstName);
                         break;
@@ -114,5 +117,16 @@ public class AddressBookSystem {
             System.out.println("Edited list is:");
             System.out.println(addressBook);
         }
+    }
+
+    public void deleteContact() {
+        System.out.println("confirm the name to delete contact");
+        String confirmName=scanner.next();
+        for (int i = 0; i < addressBook.size(); i++) {
+            if(addressBook.get(i).getFirstName().equals(confirmName));
+            Contact person = addressBook.get(i);
+            addressBook.remove(person);
+        }
+        System.out.println(addressBook);
     }
 }

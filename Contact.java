@@ -105,5 +105,4 @@ public class Contact {
                 + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
                 + "]";
     }
-    
 }
