@@ -2,6 +2,9 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class AddressBookSystem {
     public static Scanner scanner = new Scanner(System.in);
@@ -132,4 +135,14 @@ public class AddressBookSystem {
             System.out.println(i + 1 + " Contact added Successfully.. ");
         }
     }
+
+    public void showAddressBook() {
+        if (addressBook.isEmpty()) {
+            System.out.println("Address book is empty");
+        } else {
+            Set<Contact> set = addressBook.stream().collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Contact::toString))));
+            set.forEach(System.out::println);
+        }
+    }
 }
+
