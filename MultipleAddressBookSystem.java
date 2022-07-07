@@ -46,8 +46,7 @@ public class MultipleAddressBookSystem {
             }
         }
     }
-
-
+    
     public static void addAddressBook() {
         System.out.println("Create a New Address Book System !\nEnter the New AddressBook name :");
         String bookName = scanner.next();
