@@ -3,6 +3,7 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class AddressBookSystem {
@@ -146,12 +147,15 @@ public class AddressBookSystem {
 
     public void searchMethod() {
         System.out.println("Enter the city or state to search Contact ");
+        AtomicInteger counter = new AtomicInteger(0);
         String input = scanner.next();
-        for (Contact book : addressBook) {
-            if (book.getCity().equals(input) || book.getState().equals(input)) {
-                System.out.println("Matches with city name contact is :" + book);
-            }
-        }
+        addressBook.stream()
+                .forEach(i -> {
+                    if (i.getCity().equals(input)) {
+                        counter.getAndIncrement();
+                    }
+                });
+        System.out.println("number of contacts having city"+input+" are "+counter);
     }
 }
 
