@@ -39,7 +39,6 @@ public class MultipleAddressBookSystem {
         }
     }
 
-
     public static void addAddressBook() {
         System.out.println("Create a New Address Book System !\nEnter the New AddressBook name :");
         String bookName = scanner.next();
@@ -53,6 +52,7 @@ public class MultipleAddressBookSystem {
             System.out.println("AddressBook with this name already exists");
         }
     }
+
     public static void addAddressBookContact() {
         System.out.println("Enter Address Book System Name");
         String bookName = scanner.next();
@@ -78,6 +78,7 @@ public class MultipleAddressBookSystem {
             addressBookSystem.editContactDetails();
         }
     }
+
     public static void deleteAddressBookContact() {
         System.out.println("Enter Address Book System Name");
         String bookName = scanner.next();
@@ -90,6 +91,7 @@ public class MultipleAddressBookSystem {
             addressBookSystem.deleteContact();
         }
     }
+    
     public static void addMultipleContactsToAddressBook() {
         System.out.println("Enter Address Book System Name");
         String bookName = scanner.next();
