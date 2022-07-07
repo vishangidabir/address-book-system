@@ -144,5 +144,15 @@ public class AddressBookSystem {
             set.forEach(System.out::println);
         }
     }
+
+    public void searchMethod() {
+        System.out.println("Enter the city or state to search Contact ");
+        String input = scanner.next();
+        for (Contact book : addressBook) {
+            if (book.getCity().equals(input) || book.getState().equals(input)) {
+                System.out.println("Matches with city name contact is :" + book);
+            }
+        }
+    }
 }
 

@@ -14,7 +14,7 @@ public class MultipleAddressBookSystem {
 
         boolean condition = true;
         while (condition) {
-            System.out.println("choose options \n1 : Add New AddressBook System \n2 : Add AddressBook System Contacts\n3 : Edit AddressBook System Contacts\n4 : Delete AddressBook System Contact\n5 : Add AddressBook System multiple contacts\n6 : Show Address Book details \n7 : Exit");
+            System.out.println("choose options \n1 : Add New AddressBook System \n2 : Add AddressBook System Contacts\n3 : Edit AddressBook System Contacts\n4 : Delete AddressBook System Contact\n5 : Add AddressBook System multiple contacts\n6 : Show Address Book details \n7 : Search By City Or State() \n8 : Exit");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -34,6 +34,12 @@ public class MultipleAddressBookSystem {
                     break;
                 case 6:
                     showAddressBookDetails();
+                case 7:
+                    searchByCityOrState();
+                case 8:
+                    condition = false;
+                    System.out.println("Exiting the loop ");
+                    break;
                 default:
                     condition = false;
                     System.out.println("Exiting the loop ");
@@ -118,6 +124,18 @@ public class MultipleAddressBookSystem {
         }
         else{
             addressBookSystem.showAddressBook();
+        }
+    }
+
+    public static void searchByCityOrState() {
+        System.out.println("Enter the AddressBookName ");
+        String bookName = scanner.next();
+        AddressBookSystem address = mapaddressbook.get(bookName);
+        AddressBookSystem addressBookSystem = new AddressBookSystem();
+        if (address == null) {
+            System.out.println("No book found with these name");
+        } else {
+            addressBookSystem.searchMethod();
         }
     }
 }
