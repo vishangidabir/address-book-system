@@ -165,5 +165,14 @@ public class AddressBookSystem {
                     .sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
         }
     }
+
+    public void sortingByCity() {
+        if (addressBook.isEmpty()) {
+            System.out.println("Contact book is empty");
+        } else {
+            addressBook.stream()
+                    .sorted(Comparator.comparing(Contact::getCity)).forEach(System.out::println);
+        }
+    }
 }
 
