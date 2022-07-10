@@ -147,15 +147,23 @@ public class AddressBookSystem {
 
     public void searchMethod() {
         System.out.println("Enter the city or state to search Contact ");
-        AtomicInteger counter = new AtomicInteger(0);
         String input = scanner.next();
         addressBook.stream()
                 .forEach(i -> {
-                    if (i.getCity().equals(input)) {
-                        counter.getAndIncrement();
+                    if (i.getCity().equals(input) || i.getState().equals(input)) {
+
                     }
                 });
-        System.out.println("number of contacts having city"+input+" are "+counter);
+        System.out.println("Matches with city name contact is "+input+" are ");
+    }
+
+    public void sortingByPersonName() {
+        if (addressBook.isEmpty()) {
+            System.out.println("Contacts book is empty");
+        } else {
+            addressBook.stream()
+                    .sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
+        }
     }
 }
 
