@@ -6,11 +6,12 @@ public class Contact {
     private String address;
     private String city;
     private String state;
-    private int zip;
-    private long phoneNumber;
+    private String zip;
+    //private long phoneNumber;
+    private String phoneNumber;
     private String email;
-
-    Contact(){
+    public Contact(){}
+    public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email){
         this.setFirstName(firstName);
         this.setLastName(lastName);;
         this.setAddress(address);
@@ -61,19 +62,18 @@ public class Contact {
         this.state = state;
     }
 
-    public int getZip() {
-        return zip;
-    }
+    public String getZip() {
+        return zip;}
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -83,20 +83,6 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-
-    public Contact(String firstName2, String lastName2, String address2, String city2, String state2, String email2,
-                   int zip2, long phoneNumber2) {
-        this.firstName=firstName2;
-        this.lastName=lastName2;
-        this.address=address2;
-        this.city=city2;
-        this.state=state2;
-        this.zip=zip2;
-        this.phoneNumber=phoneNumber2;
-        this.email=email2;
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -113,3 +99,5 @@ public class Contact {
                 '}';
     }
 }
+
+

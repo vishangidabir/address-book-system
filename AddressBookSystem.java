@@ -5,173 +5,230 @@ import java.util.Scanner;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class AddressBookSystem {
     public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Contact> addressBook = new ArrayList<Contact>();
 
-    public static void main(String[] args) {
-
-        System.out.println("Welcome to the Address Book Problem");
-        AddressBookSystem addressBookList = new AddressBookSystem();
-        addressBookList.addContactDetails();
-        boolean condition = true;
-
-        while (condition == true) {
-            System.out.println("1.Add" + "\n" + "2.Edit" + "\n" + "3.Delete" + "\n" + "4.Multiple");
-            int option = scanner.nextInt();
-            switch (option) {
-                case 1:
-                    addressBookList.addContactDetails();
-                    break;
-                case 2:
-                    addressBookList.editContactDetails();
-                    break;
-                case 3:
-                    addressBookList.deleteContact();
-                    break;
-                case 4:
-                    addressBookList.addmultipleContact();
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-            }
-        }
-    }
-
-    public void addContactDetails() {
+    public ArrayList<Contact> addContactDetails(ArrayList<Contact> contacts) {
+        System.out.println("Please Enter the following details as below:");
         Contact details = new Contact();
+
         System.out.println("Enter a first name:");
         details.setFirstName(scanner.next());
+        try {
+            if (!validateFirstName(details.getFirstName()))
+                System.out.println("Invalid ! Please Enter valid first name");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println("Enter a last name:");
         details.setLastName(scanner.next());
+        try {
+            if (!validateLastName(details.getLastName()))
+                System.out.println("Invalid ! Please Enter valid last name");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println("Enter a Address:");
         details.setAddress(scanner.next());
+        try{
+        if (!validateAddress(details.getAddress()))
+            System.out.println("Invalid ! Please Enter valid address");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println("Enter a City name:");
         details.setCity(scanner.next());
-        System.out.println("Enter a state:");
+        try{
+        if (!validateCity(details.getCity()))
+            System.out.println("Invalid ! Please Enter valid city name");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Enter a State name :");
         details.setState(scanner.next());
+        try{
+        if (!validateState(details.getState()))
+            System.out.println("Invalid ! Please Enter valid state name");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println("Enter a email:");
         details.setEmail(scanner.next());
-        System.out.println("Enter a zip code:");
-        details.setZip(scanner.nextInt());
-        System.out.println("Enter a phone number:");
-        details.setPhoneNumber(scanner.nextLong());
+        try{
+        if(!validateEmail(details.getEmail()))
+            System.out.println("Invalid ! Please Enter valid email");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        addressBook.add(details);
-        System.out.print(addressBook);
+        System.out.println("Enter a zip code:");
+        details.setZip(scanner.next());
+        try{
+        if(!validateZip(details.getZip()))
+            System.out.println("Invalid ! Please Enter valid zip code");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Enter a phone number:");
+        details.setPhoneNumber(scanner.next());
+        try{
+        if(!validatePhoneNumber(details.getPhoneNumber()))
+            System.out.println("Invalid ! Please Enter valid phone number");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        contacts.add(details);
         System.out.println("Succesfully added new contacts");
+        return contacts;
     }
 
-    public void editContactDetails() {
+    private boolean validateFirstName(String firstname)  {
+        return firstname.matches("[A-Z][a-z]{3,}");
+    }
+    private boolean validateLastName(String lastName) {
+        return lastName.matches("[A-Z][a-z]{3,}");
+    }
+    private boolean validateAddress(String address) {
+        return address.matches("[A-Z][a-z]{3,}");
+    }
+    private boolean validateCity(String city) {
+        return city.matches("[A-Z][a-z]{3,}");
+    }
+    private boolean validateState(String state) {
+        return state.matches("[A-Z][a-z]{3,}");
+    }
+    private boolean validateZip(String zip) {
+        return zip.matches("[0-9]{6}");
+    }
+    private boolean validateEmail(String email)  {
+        return email.matches("[a-z\\d]{5,}@[a-z]{5}.[a-z]{2,}");
+    }
+    private boolean validatePhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("(0/91)?[7-9][0-9]{9}");
+    }
+
+    public ArrayList<Contact> editContactDetails(ArrayList<Contact> contacts) {
         System.out.println("Enter a name for edit:");
         String editName = scanner.next();
-        for (int i = 0; i < addressBook.size(); i++) {
-            if (addressBook.get(i).getFirstName().equals(editName)) {
+        IntStream.range(0, contacts.size()).forEach(i -> {
+            if (contacts.get(i).getFirstName().equals(editName)) {
                 System.out.println("select options");
                 System.out.println("\n1.First Name\n2.Last Name\n3.Address\n4.City\n5.State\n6.Zip\n7.Phone Number\n8.Email");
                 int editOption = scanner.nextInt();
 
                 switch (editOption) {
-                    case 1:
+                    case 1 -> {
                         System.out.println("Enter a First name:");
                         String editFirstName = scanner.next();
-                        addressBook.get(i).setFirstName(editFirstName);
+                        contacts.get(i).setFirstName(editFirstName);
                         System.out.println(editFirstName);
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.print("Enter a Last name:");
-                        addressBook.get(i).setLastName(scanner.next());
-                        break;
-                    case 3:
+                        contacts.get(i).setLastName(scanner.next());
+                    }
+                    case 3 -> {
                         System.out.print("Enter a Address:");
-                        addressBook.get(i).setAddress(scanner.next());
-                        break;
-                    case 4:
+                        contacts.get(i).setAddress(scanner.next());
+                    }
+                    case 4 -> {
                         System.out.print("Enter a city:");
-                        addressBook.get(i).setCity(scanner.nextLine());
-                        break;
-                    case 5:
+                        contacts.get(i).setCity(scanner.next());
+                    }
+                    case 5 -> {
                         System.out.print("Enter a state:");
-                        addressBook.get(i).setState(scanner.nextLine());
-                        break;
-                    case 6:
+                        contacts.get(i).setState(scanner.next());
+                    }
+                    case 6 -> {
                         System.out.print("Enter a zip code:");
-                        addressBook.get(i).setZip(scanner.nextInt());
-                        break;
-                    case 7:
+                        contacts.get(i).setZip(scanner.next());
+                    }
+                    case 7 -> {
                         System.out.print("Enter a phone number:");
-                        addressBook.get(i).setPhoneNumber(scanner.nextLong());
-                        break;
-                    case 8:
+                        contacts.get(i).setPhoneNumber(scanner.next());
+                    }
+                    case 8 -> {
                         System.out.print("Enter a email:");
-                        addressBook.get(i).setEmail(scanner.nextLine());
-                        break;
-                    default:
-                        System.out.println("enter valid contact");
+                        contacts.get(i).setEmail(scanner.next());
+                    }
+                    default -> System.out.println("enter valid contact");
                 }
             }
-            System.out.println("Edited list is:");
-            System.out.println(addressBook);
-        }
+            System.out.println(editName + " Edited Sucessfully");
+        });
+        return contacts;
     }
 
-    public void deleteContact() {
+    public ArrayList<Contact> deleteContact(ArrayList<Contact> contacts) {
         System.out.println("Confirm the name to delete contact");
         String confirmName = scanner.next();
-        for (int i = 0; i < addressBook.size(); i++) {
-            if (addressBook.get(i).getFirstName().equals(confirmName)) ;
-            Contact person = addressBook.get(i);
-            addressBook.remove(person);
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getFirstName().equals(confirmName)) ;
+            Contact person = contacts.get(i);
+            contacts.remove(person);
         }
-        System.out.println(addressBook);
+        System.out.println(confirmName+" Deleted Sucessfully");
+        return contacts;
     }
 
-    public void addmultipleContact() {
+    public ArrayList<Contact> addmultipleContact(ArrayList<Contact> contacts) {
         System.out.println("Enter Number of Contacts to Add into Contact Book");
         int number = scanner.nextInt();
         for (int i = 0; i < number; i++) {
-            addContactDetails();
+            contacts = addContactDetails(contacts);
             System.out.println(i + 1 + " Contact added Successfully.. ");
         }
+        return contacts;
     }
 
-    public void showAddressBook() {
-        if (addressBook.isEmpty()) {
+    public void showAddressBook(ArrayList<Contact> contacts) {
+        if (contacts.isEmpty()) {
             System.out.println("Address book is empty");
         } else {
-            Set<Contact> set = addressBook.stream().collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Contact::toString))));
+            Set<Contact> set = contacts.stream().collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Contact::toString))));
             set.forEach(System.out::println);
         }
     }
 
-    public void searchMethod() {
+    public void searchByCity(ArrayList<Contact> contacts)  {
         System.out.println("Enter the city or state to search Contact ");
         String input = scanner.next();
-        addressBook.stream()
-                .forEach(i -> {
-                    if (i.getCity().equals(input) || i.getState().equals(input)) {
-
-                    }
-                });
-        System.out.println("Matches with city name contact is "+input+" are ");
+        for (Contact book : contacts) {
+            if (book.getCity().equals(input) || book.getState().equals(input)) {
+                System.out.println("Matches with city name contact is :" + book);
+            }
+        }
+    }
+    public void countByCity(ArrayList<Contact> contacts) {
+        System.out.println("Enter the city or state to search Contact ");
+        AtomicInteger counter = new AtomicInteger(0);
+        String input = scanner.next();
+        contacts.forEach(i -> {if (i.getCity().equals(input)) {counter.getAndIncrement();}});
+        System.out.println("number of contacts having city "+input+" are "+counter);
     }
 
-    public void sortingByPersonName() {
-        if (addressBook.isEmpty()) {
+    public void sortingByPerson(ArrayList<Contact> contacts) {
+        if (contacts.isEmpty()) {
             System.out.println("Contacts book is empty");
         } else {
-            addressBook.stream()
-                    .sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
+            contacts.stream().sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
         }
     }
 
-    public void sortingByCity() {
-        if (addressBook.isEmpty()) {
+    public void sortingByCity(ArrayList<Contact> contacts) {
+        if (contacts.isEmpty()) {
             System.out.println("Contact book is empty");
         } else {
-            addressBook.stream()
-                    .sorted(Comparator.comparing(Contact::getCity)).forEach(System.out::println);
+            contacts.stream().sorted(Comparator.comparing(Contact::getCity)).forEach(System.out::println);
         }
     }
 }
